@@ -15,12 +15,12 @@ Cliente.prototype.autenticacion = function() {
     console.log("Se autenticó al cliente:", this.nombre);
 }
 
-function Restaurante(nombre){
+ function Restaurante(nombre){
     this.nombre = nombre;
 }
 
 
-function RestauranteDigital(nombre, menuQR) {
+ function RestauranteDigital(nombre, menuQR) {
     Restaurante.call(this,nombre)
     this.menuQR = menuQR;
 }

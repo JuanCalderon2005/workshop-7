@@ -3,7 +3,7 @@ function Persona(nombre, email, clave){
     this.emial = email;
     this.clave = clave;
 }
-
+ 
 function Usuario(nombre, email, productosAcumulados, clave){
     Persona.call(this,nombre,email,clave);
     this.productosAcumulados = productosAcumulados;
