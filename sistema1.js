@@ -1,9 +1,15 @@
-function Usuario(nombre, email, productosAcumulados, clave){
+function Persona(nombre, email, clave){
     this.nombre = nombre;
-    this.email = email;
-    this.productosAcumulados = productosAcumulados;
+    this.emial = email;
     this.clave = clave;
 }
+
+function Usuario(nombre, email, productosAcumulados, clave){
+    Persona.call(this,nombre,email,clave);
+    this.productosAcumulados = productosAcumulados;
+}
+Usuario.prototype = Object.create(Usuario.prototype)
+Usuario.prototype.constructor = Usuario;
 Usuario.prototype.acumularPuntos = function(){
     console.log("Se acumularon puntos al usuario:", this.nombre);
 }
@@ -21,7 +27,6 @@ function Producto(nombre, puntosNecesarios, cantidadDisponible, stock){
 Producto.prototype.obtenerInformacion = function(){
     console.log("Se obtuvo información del producto:", this.nombre);
 }
-
 
 function ProductoFisico(nombre, puntosNecesarios, cantidadDisponible, precio, stock){
     Producto.call(this,nombre,puntosNecesarios,cantidadDisponible,stock);
@@ -84,9 +89,9 @@ OrdenDeCanje.prototype.cancelarOrden = function(){
 
 
 function Administrador(nombre, email, clave){
-    Usuario.call(this,nombre, email, productosAcumulados, clave)
+    Persona.call(this,nombre, email, clave )
 }
-Administrador.prototype=Object.create(Usuario.prototype)
+Administrador.prototype=Object.create(Persona.prototype)
 Administrador.prototype.constructor = Administrador
 Administrador.prototype.agregarProducto = function(){
     console.log("Se agregó un nuevo producto a la tienda");

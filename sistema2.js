@@ -15,11 +15,17 @@ Cliente.prototype.autenticacion = function() {
     console.log("Se autenticó al cliente:", this.nombre);
 }
 
+function Restaurante(nombre){
+    this.nombre = nombre;
+}
+
 
 function RestauranteDigital(nombre, menuQR) {
-    this.nombre = nombre;
+    Restaurante.call(this,nombre)
     this.menuQR = menuQR;
 }
+RestauranteDigital.prototype = Object.create(Restaurante.prototype)
+RestauranteDigital.prototype.constructor = RestauranteDigital
 RestauranteDigital.prototype.agregarPlato = function() {
     console.log("Se agregó un plato al menú del restaurante digital:", this.nombre);
 }
@@ -28,11 +34,14 @@ RestauranteDigital.prototype.actualizarPlato = function() {
 }
 
 
+
 function RestauranteFisico(nombre, direccion, menuFisico) {
-    this.nombre = nombre;
+    Restaurante.call(this,nombre)
     this.direccion = direccion;
     this.menuFisico = menuFisico;
 }
+RestauranteFisico.prototype = Object.create(Restaurante.prototype)
+RestauranteFisico.prototype.constructor = RestauranteFisico
 RestauranteFisico.prototype.agregarPlato = function() {
     console.log("Se agregó un plato al menú del restaurante físico:", this.nombre);
 }
@@ -67,18 +76,27 @@ Plato.prototype.obtenerInfo = function() {
 }
 
 
-function MenuQR(plato, URL) {
+function Menu(plato){
     this.plato = plato;
+}
+
+
+function MenuQR(plato, URL) {
+    Menu.call(this,plato)
     this.URL = URL;
 }
+MenuQR.prototype = Object.create(Menu.prototype)
+MenuQR.prototype.constructor = MenuQR
 MenuQR.prototype.generarQR = function() {
     console.log("Se generó un código QR para el plato:", this.plato.nombre);
 };
 
 
 function MenuFisico(plato) {
-    this.plato = plato;
+    Menu.call(this,plato)
 }
+MenuFisico.prototype = Object.create(Menu.prototype)
+MenuFisico.prototype.constructor = MenuFisico
 MenuFisico.prototype.impresion = function() {
     console.log("Se imprimió el menú físico");
 }
