@@ -8,7 +8,7 @@ function Usuario(nombre, email, productosAcumulados, clave){
     Persona.call(this,nombre,email,clave);
     this.productosAcumulados = productosAcumulados;
 }
-Usuario.prototype = Object.create(Usuario.prototype)
+Usuario.prototype = Object.create(Persona.prototype)
 Usuario.prototype.constructor = Usuario;
 Usuario.prototype.acumularPuntos = function(){
     console.log("Se acumularon puntos al usuario:", this.nombre);
